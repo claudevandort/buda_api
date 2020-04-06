@@ -9,7 +9,7 @@ module BudaApi
         uri = URI url
         response = Net::HTTP.get_response uri
         body = JSON.parse response.body
-        raise ArgumentError, "[#{url}] => (#{response.code}) #{body['message']}" unless response.code.to_i == 200
+        raise StandardError, "[#{url}] => (#{response.code}) #{body['message']}" unless response.code.to_i == 200
         body
       end
 
@@ -24,23 +24,23 @@ module BudaApi
       end
 
       def volume market_id
-        get "#{BudaApi::BUDA_API_URL}markets/#{market_id}/volume.json"
-        json['market']
+        json = get "#{BudaApi::BUDA_API_URL}markets/#{market_id}/volume.json"
+        json['volume']
       end
 
       def ticker market_id
-        get "#{BudaApi::BUDA_API_URL}markets/#{market_id}/ticker.json"
+        json = get "#{BudaApi::BUDA_API_URL}markets/#{market_id}/ticker.json"
         json['ticker']
       end
 
       def order_book market_id
-        get "#{BudaApi::BUDA_API_URL}markets/#{market_id}/order_book.json"
+        json = get "#{BudaApi::BUDA_API_URL}markets/#{market_id}/order_book.json"
         json['order_book']
       end
 
       def trades market_id, limit = 100
-        get "#{BudaApi::BUDA_API_URL}markets/#{market_id}/trades.json?limit=#{limit}" # 500 when limit is nil 💥
-        json['order_book']
+        json = get "#{BudaApi::BUDA_API_URL}markets/#{market_id}/trades.json?limit=#{limit}" # 500 when limit is nil 💥
+        json['trades']
       end
     end
   end
