@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = "Buda API Gem"
   s.authors     = ["Claudio Guerra"]
   s.email       = 'claudevandort@gmail.com'
-  s.files       = ["lib/buda_api.rb"]
+  s.files       = ["lib/buda_api.rb", "lib/buda_api/markets.rb"]
   s.homepage    = 'https://rubygems.org/gems/buda_api'
-  s.license       = 'MIT'
+  s.license     = 'MIT'
 end
